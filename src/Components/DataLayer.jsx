@@ -40,21 +40,21 @@ const DataLayer = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  return (
-    <div>
-      <h1>Product Search</h1>
-      <ul>
-        {products.map((product, index) => (
-          <p key={index}>
-            <h3>{product.title}</h3>
-            <img style={{ height: 100 }} src={product.image.src} alt="" />
-            <p>Price: {product.price}</p>
-            <p>Description: {product.description}</p>
-          </p>
-        ))}
-      </ul>
-    </div>
-  );
+  // return (
+  //   <div className='flex gap-8 bg-gray-100 items-center justify-center pt-10 ' >
+     
+     
+
+  //       {products.map((product, index) => (
+  //         <div className="flex flex-col gap-2 " key={index}>
+  //           <img style={{ height: 100 }} src={product.image.src} alt="" />
+  //           <h3>Name : {product.title}</h3>
+  //           <p>Price: {product.price}</p>
+  //           <p>Description: {product.description}</p>
+  //         </div>
+  //       ))}
+  //   </div>
+  // );
 };
 
 export default DataLayer;
