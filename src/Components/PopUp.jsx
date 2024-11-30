@@ -6,20 +6,9 @@ const PopUp =({value, setvalue})=>{
 const closeHandleButtonClick = () =>{
   setvalue(false);
 }
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-        <div className="flex justify-end">
-          <button
-            onClick={closeHandleButtonClick}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            &times;
-          </button>
-        </div>
-        {/* {<MainBody/>} */}
-        {
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+  return (<>
+           {
+    <div className="fixed inset-0 z-50 flex items-center justify-center ">
       <div className="w-[500px] bg-white rounded-lg shadow-lg">
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <h2 className="text-lg font-medium">Add products</h2>
@@ -66,8 +55,7 @@ const closeHandleButtonClick = () =>{
       </div>
     </div>}
 
-      </div>
-    </div>
+   </>
   );
  }
 
