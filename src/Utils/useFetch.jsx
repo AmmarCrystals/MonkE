@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const useFetch = () => {
+const useFetch = ({inputChange}) => {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState(''); // Default empty search
   const [page, setPage] = useState(0); // Default page
   const [totalPages, setTotalPages] = useState(1); // Assuming API returns total pages
+
+  setProducts(inputChange)
 
   const fetchProducts = async () => {
     setLoading(true);

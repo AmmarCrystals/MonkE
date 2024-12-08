@@ -7,14 +7,22 @@ import './index.css';
 
 function App() {
   const [command, setCommand ] = useState(false);
+  const [inputChange, setInputChange] = useState("Hat")
+  console.log(inputChange)
   return (
     <>
       {/* <DataLayer   /> */}
+
+      <useFetch inputChange={inputChange}
+      setInputChange ={setInputChange}/>
+      
       <Dashboard value = {command}
       setvalue = {setCommand} />
 
       {command && <PopUp value = {command}
       setvalue = {setCommand}
+      inputChange={inputChange}
+      setInputChange ={setInputChange}
       />}
 
 

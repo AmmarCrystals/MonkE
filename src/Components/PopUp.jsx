@@ -2,12 +2,15 @@ import { useState } from "react";
 import useFetch from "../Utils/useFetch"
 
 
-const PopUp = ({ value, setvalue }) => {
+const PopUp = ({ value, inputChange, setInputChange, setvalue }) => {
 
   const products = useFetch()
 
+  function onChangeHandler(e){
+    console.log(e.target.value)
+  }
 
-  console.log(products)
+  // console.log(products)
 
   const closeHandleButtonClick = () => {
     setvalue(false);
@@ -24,6 +27,7 @@ const PopUp = ({ value, setvalue }) => {
           </div>
           <div className="p-4">
             <input
+            onChange={onChangeHandler}
               type="text"
               placeholder="Search products"
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
