@@ -3,14 +3,22 @@ import useFetch from "../Utils/useFetch"
 import UserContext from "../Utils/UserContext"
 
 const PopUp = () => {
+  const { isPopUpVisible, setIsPopUpVisible, searchParam, setSearchParam } = useContext(UserContext)
 
-    const {isPopUpVisible,setIsPopUpVisible } = useContext(UserContext)
+  const [parentChecked, setParentChecked] = useState(false);
+  const [childrenChecked, setChildrenChecked] = useState([false, false, false]);
+  
+  const handleParentChange = (e) => {
+    const isChecked = e.target.checked;
+    setParentChecked(isChecked);
+    setChildrenChecked([isChecked]); // Set all children to the same state
+  };
 
 
-    const products = useFetch()
 
-  function onChangeHandler(e) {
-    console.log(e.target.vale)
+const products = useFetch()
+function onChangeHandler(e) {
+    setSearchParam(e.target.value)
   }
 
   const closeHandleButtonClick = () => {
@@ -35,24 +43,27 @@ const PopUp = () => {
             />
             <ul className="mt-4 space-y-2 max-h-[300px] overflow-y-auto">
               {products?.map((product, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between items-center border p-2 rounded-md hover:bg-gray-100"
-                >
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" onChange={(e) => {
-                      onChangeHandler
-                      const FData = filterFun(sarchText, products)
+                <>
+                  <li
+                    key={index}
+                    className="flex justify-between items-center border p-2 rounded-md hover:bg-gray-100 w-full"
+                  >
+                    <div className="w-full">
+                      <input type="checkbox" onChange={handleParentChange} className="mr-3" />
+                      <span className="text-xm font-medium">{product.title}</span>
+                      <div className="pl-6 pt10">
+                        <div className="flex w-full items-center">
+                          <div className="flex items-center">
+                            <input type="checkbox" className="mr-3" />
+                            <span className="text-xm ml-1 ">{product.variants[0].title} - ({product.variants[0].inventory_quantity} Peas)</span>
+                          </div>
+                          <span className="text-xm  ml-auto">₹{product.variants[0].price}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
 
-                    }} />
-                    <span className="text-xm font-medium">{product.title}</span>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-gray-500">{product?.status} </p>
-                    <p className="text-sm font-medium">₹{product?.variants[0]?.price}</p>
-                  </div>
-                </li>
-              )) || "have some Error"}
+                </>)) || "have some Error"}
             </ul>
           </div>
           <div className="flex justify-end p-4 border-t">

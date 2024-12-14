@@ -6,7 +6,6 @@ const Dashboard =()=>{
 
 
   const {isPopUpVisible, setIsPopUpVisible} = useContext(UserContext)
-console.log(isPopUpVisible)
 
 const openHandleButtonClick = () =>{
   setIsPopUpVisible(true);

@@ -9,9 +9,10 @@ import UserContext from "./Utils/UserContext"
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+  const [searchParam, setSearchParam] = useState("")
 
   return (
-    <UserContext.Provider value={{isPopUpVisible, setIsPopUpVisible}} >
+    <UserContext.Provider value={{isPopUpVisible, setIsPopUpVisible, searchParam, setSearchParam}} >
       <useFetch />
       <Dashboard />
       <PopUp />
