@@ -1,13 +1,15 @@
 import React from "react";
-import {useState} from "react"
+import {useState, useContext} from "react"
+import UserContext from "../Utils/UserContext";
 
-const Dashboard =({value, setvalue})=>{
+const Dashboard =()=>{
 
 
-
+  const {isPopUpVisible, setIsPopUpVisible} = useContext(UserContext)
+console.log(isPopUpVisible)
 
 const openHandleButtonClick = () =>{
-  setvalue(true);
+  setIsPopUpVisible(true);
 }
 
 

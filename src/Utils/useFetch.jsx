@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const useFetch = ({inputChange}) => {
-  const [products, setProducts] = useState();
+const useFetch = (inputChange) => {
+  const [products, setProducts] = useState("car");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState(''); // Default empty search
   const [page, setPage] = useState(0); // Default page
-  const [totalPages, setTotalPages] = useState(1); // Assuming API returns total pages
+  const [totalPages, setTotalPages] = useState(10); // Assuming API returns total pages
 
-  setProducts(inputChange)
+  
 
   const fetchProducts = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.get('https://stageapi.monkcommerce.app/task/products/search', {
+      const response = await axios.get('https://stageapi.monkcommerce.app/task/products/search?search=C&page=1&limit=20', {
+      // const response = await axios.get('http://stageapi.monkcommerce.app/task/products/search?search=Hat&page=2&limit=1', {
+
         headers: {
           'x-api-key': '72njgfa948d9aS7gs5',
         },
         params: {
           search: search,
           page: page,
-          limit: 20, // Optional: Adjust the limit per page
+          limit: 10, // Optional: Adjust the limit per page
         },
       });
 
@@ -39,7 +41,7 @@ const useFetch = ({inputChange}) => {
   // Fetch products when search or page changes
   useEffect(() => {
     fetchProducts();
-  }, [search, page]);
+  }, []);
 
   return products;
 };

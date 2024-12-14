@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import useFetch from "../Utils/useFetch"
+import UserContext from "../Utils/UserContext"
+
+const PopUp = () => {
+
+    const {isPopUpVisible,setIsPopUpVisible } = useContext(UserContext)
 
 
-const PopUp = ({ value, inputChange, setInputChange, setvalue }) => {
+    const products = useFetch()
 
-  const products = useFetch()
-
-  function onChangeHandler(e){
-    console.log(e.target.value)
+  function onChangeHandler(e) {
+    console.log(e.target.vale)
   }
-
-  // console.log(products)
 
   const closeHandleButtonClick = () => {
-    setvalue(false);
+    setIsPopUpVisible(false)
   }
   return (<>
-    {
+    {isPopUpVisible &&
       <div className="fixed inset-0 z-50 flex items-center justify-center ">
         <div className="w-[500px] bg-white rounded-lg shadow-lg">
           <div className="flex justify-between items-center px-4 py-3 border-b">
@@ -27,7 +28,7 @@ const PopUp = ({ value, inputChange, setInputChange, setvalue }) => {
           </div>
           <div className="p-4">
             <input
-            onChange={onChangeHandler}
+              onChange={onChangeHandler}
               type="text"
               placeholder="Search products"
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
@@ -39,7 +40,11 @@ const PopUp = ({ value, inputChange, setInputChange, setvalue }) => {
                   className="flex justify-between items-center border p-2 rounded-md hover:bg-gray-100"
                 >
                   <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" />
+                    <input type="checkbox" className="mr-3" onChange={(e) => {
+                      onChangeHandler
+                      const FData = filterFun(sarchText, products)
+
+                    }} />
                     <span className="text-xm font-medium">{product.title}</span>
                   </div>
                   <div className="text-right">

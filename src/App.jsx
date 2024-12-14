@@ -1,32 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Dashboard from "./Components/Dashboard"
 // import DataLayer from './Components/DataLayer';
 import PopUp from "./Components/PopUp";
 import './index.css';
+import UserContext from "./Utils/UserContext"
+
 
 
 function App() {
-  const [command, setCommand ] = useState(false);
-  const [inputChange, setInputChange] = useState("Hat")
-  console.log(inputChange)
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+
   return (
-    <>
-      {/* <DataLayer   /> */}
-
-      <useFetch inputChange={inputChange}
-      setInputChange ={setInputChange}/>
-      
-      <Dashboard value = {command}
-      setvalue = {setCommand} />
-
-      {command && <PopUp value = {command}
-      setvalue = {setCommand}
-      inputChange={inputChange}
-      setInputChange ={setInputChange}
-      />}
-
-
-    </>
+    <UserContext.Provider value={{isPopUpVisible, setIsPopUpVisible}} >
+      <useFetch />
+      <Dashboard />
+      <PopUp />
+    </UserContext.Provider>
   );
 }
 
